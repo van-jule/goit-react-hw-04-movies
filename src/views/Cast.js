@@ -7,13 +7,11 @@ import styles from './MovieDetails.module.css';
 export default function Cast() {
   const location = useLocation();
 
-  console.log('Cast location', location);
   const [actors, setActors] = useState(null);
   const [status, setStatus] = useState(Status.IDLE);
   const [error, setError] = useState();
 
   const { movieId } = useParams();
-  console.log({ movieId });
   const imageUrl = `https://www.themoviedb.org/t/p/w600_and_h900_bestv2`;
 
   useEffect(() => {

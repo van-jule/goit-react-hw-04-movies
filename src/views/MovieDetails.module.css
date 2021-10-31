@@ -115,7 +115,11 @@ a {
 .cast:hover,
 .reviews:hover {
   transform: scale(1.05);
-  cursor: zoom-in;
+}
+
+.castLink,
+.reviewsLink {
+  display: block;
 }
 
 .list {

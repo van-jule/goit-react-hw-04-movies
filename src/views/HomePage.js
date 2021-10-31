@@ -9,7 +9,6 @@ import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
 
 export default function HomePage() {
   const location = useLocation();
-  console.log('HomePage', location);
   const { url } = useRouteMatch();
   const [movies, setMovies] = useState(null);
   const [status, setStatus] = useState(Status.IDLE);
@@ -67,13 +66,13 @@ export default function HomePage() {
                 'https://www.focusedu.org/wp-content/uploads/2018/12/circled-user-male-skin-type-1-2.png';
 
               return (
-                <Link
-                  to={{
-                    pathname: `${url}movies/${movie.id}`,
-                    state: { from: location },
-                  }}
-                >
-                  <li key={movie.id} className={styles.item}>
+                <li key={movie.id} className={styles.item}>
+                  <Link
+                    to={{
+                      pathname: `${url}movies/${movie.id}`,
+                      state: { from: location },
+                    }}
+                  >
                     <img
                       className={styles.moviePoster}
                       src={moviePoster}
@@ -83,8 +82,8 @@ export default function HomePage() {
                     <p className={styles.text}>
                       Rating: {movie.vote_average}/10
                     </p>
-                  </li>
-                </Link>
+                  </Link>{' '}
+                </li>
               );
             })}
           </ul>

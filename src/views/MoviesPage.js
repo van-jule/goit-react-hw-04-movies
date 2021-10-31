@@ -28,7 +28,6 @@ export default function MoviesPage() {
         .then(({ results }) => {
           setMovies(results);
           setStatus(Status.RESOLVED);
-          console.log(results);
         })
         .catch(error => {
           setError(error);
@@ -44,15 +43,11 @@ export default function MoviesPage() {
       return;
     }
 
-    console.log('location.search', location.search);
-    console.log('queryInURL', queryInURL);
-
     if (location.search !== '') {
       API.fetchMovies(queryInURL)
         .then(({ results }) => {
           setMovies(results);
           setStatus(Status.RESOLVED);
-          console.log(results);
         })
         .catch(error => {
           setError(error);

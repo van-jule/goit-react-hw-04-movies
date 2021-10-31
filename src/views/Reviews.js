@@ -6,7 +6,6 @@ import styles from './MovieDetails.module.css';
 
 export default function Reviews() {
   const location = useLocation();
-  console.log('Reviews location', location);
 
   const [reviews, setReviews] = useState(null);
   const [totalReviews, setTotalReviews] = useState(0);
@@ -14,17 +13,14 @@ export default function Reviews() {
   const [error, setError] = useState();
   const { movieId } = useParams();
 
-  console.log({ movieId });
   const imageUrl = `https://www.themoviedb.org/t/p/w600_and_h900_bestv2`;
 
   useEffect(() => {
     API.fetchReviews(movieId)
       .then(data => {
         const total = data.total_results;
-        console.log('total', total);
 
-        const reviews = data.results[0].content;
-        console.log('result', data);
+        // const reviews = data.results[0].content;
         setTotalReviews(total);
         setReviews(data.results);
         setStatus(Status.RESOLVED);
@@ -35,12 +31,10 @@ export default function Reviews() {
       });
   }, []);
 
-  console.log('reviews', reviews);
-
   return (
     <>
       <h2 className={styles.title}>Reviews</h2>
-      {reviews ? (
+      {totalReviews > 0 ? (
         <ul className={styles.list}>
           {reviews.map(review => {
             let url = review?.author_details?.avatar_path;

@@ -22,9 +22,7 @@ const Reviews = lazy(() =>
 export default function MovieDetailsPage() {
   const history = useHistory();
   const location = useLocation();
-  console.log('MovieDetailsPage:', location);
   const { url, path } = useRouteMatch();
-  console.log('path', { path });
   const [status, setStatus] = useState(Status.IDLE);
   const [error, setError] = useState(null);
   const [movie, setMovie] = useState(null);
@@ -100,6 +98,7 @@ export default function MovieDetailsPage() {
                   Additional information
                   <li className={styles.cast}>
                     <NavLink
+                      className={styles.castLink}
                       to={{
                         pathname: `${url}/cast`,
                         state: { from: location?.state?.from ?? location },
@@ -110,6 +109,7 @@ export default function MovieDetailsPage() {
                   </li>
                   <li className={styles.reviews}>
                     <NavLink
+                      className={styles.reviewsLink}
                       to={{
                         pathname: `${url}/reviews`,
                         state: { from: location?.state?.from ?? location },
