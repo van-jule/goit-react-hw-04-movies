@@ -88,7 +88,7 @@ export default function MoviesPage() {
                 {movie.title}
               </Link>
             </li>
-          ))}{' '}
+          ))}
         </ul>
       )}
     </>

@@ -78,11 +78,11 @@ export default function HomePage() {
                       className={styles.moviePoster}
                       src={moviePoster}
                       alt={movie.title}
-                    />{' '}
+                    />
                     <h2 className={styles.subtitle}>{movie.title}</h2>
                     <p className={styles.text}>
                       Rating: {movie.vote_average}/10
-                    </p>{' '}
+                    </p>
                   </li>
                 </Link>
               );
