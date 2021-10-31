@@ -43,6 +43,7 @@ export default function HomePage() {
     return (
       <>
         <PageHeading text="Домашняя страница" />
+
         {movies &&
           movies.map(movie => (
             <li key={movie.id}>
