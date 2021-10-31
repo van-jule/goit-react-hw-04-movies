@@ -4,26 +4,20 @@ import { Link, useRouteMatch, useHistory, useLocation } from 'react-router-dom';
 
 import PageHeading from '../components/PageHeading';
 import Searchbar from '../components/Searchbar';
-// import UserLoader from '../components/UserLoader';
 import API from '../services/themoviedbApi';
 import Status from '../services/Status';
+import styles from './MovieDetails.module.css';
 
 export default function MoviesPage() {
   const { url, path } = useRouteMatch();
 
   const history = useHistory();
   const location = useLocation();
-  console.log({ url });
 
   const [status, setStatus] = useState(Status.IDLE);
   const [error, setError] = useState(null);
   const [movies, setMovies] = useState(null);
   const [queryValue, setQueryValue] = useState('');
-
-  // useEffect(() => {
-  //   console.log('location', location);
-  //   setQueryValue(location.search.split('=')[1]);
-  // }, []);
 
   useEffect(() => {
     if (queryValue) {
@@ -65,12 +59,6 @@ export default function MoviesPage() {
           setStatus(Status.REJECTED);
         });
     }
-
-    // if (location.search !== '') {
-    //   return;
-    // }
-
-    // history.push({ ...location, search: `query=${queryValue}` });
   }, [location]);
 
   const handleFormSubmit = queryValue => {
@@ -83,15 +71,26 @@ export default function MoviesPage() {
 
   return (
     <>
-      <PageHeading text="Страница фильмов" />
+      <PageHeading text="Search movie" />
       <Searchbar onSubmit={handleFormSubmit} />
 
-      {movies &&
-        movies.map(movie => (
-          <li key={movie.id}>
-            <Link to={`${url}/${movie.id}`}> {movie.title}</Link>
-          </li>
-        ))}
+      {movies && (
+        <ul className={styles.list}>
+          {movies.map(movie => (
+            <li key={movie.id}>
+              <Link
+                to={{
+                  pathname: `${url}/${movie.id}`,
+                  state: { from: location },
+                }}
+              >
+                {' '}
+                {movie.title}
+              </Link>
+            </li>
+          ))}{' '}
+        </ul>
+      )}
     </>
   );
 }

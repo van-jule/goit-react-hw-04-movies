@@ -1,10 +1,13 @@
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useLocation } from 'react-router-dom';
 import API from '../services/themoviedbApi';
 import Status from '../services/Status';
 import styles from './MovieDetails.module.css';
 
 export default function Cast() {
+  const location = useLocation();
+
+  console.log('Cast location', location);
   const [actors, setActors] = useState(null);
   const [status, setStatus] = useState(Status.IDLE);
   const [error, setError] = useState();
@@ -25,22 +28,33 @@ export default function Cast() {
         setStatus(Status.REJECTED);
       });
   }, []);
-  console.log(actors);
 
   return (
     <>
-      {actors &&
-        actors.map(actor => (
-          <li key={actor.id}>
-            <p>{actor.name}</p>
-            <p>Character: {actor.character}</p>
-            <img
-              className={styles.actorImage}
-              src={`${imageUrl}${actor.profile_path}`}
-              alt={actor.name}
-            />
-          </li>
-        ))}
+      {actors && (
+        <>
+          <h2 className={styles.title}>Cast</h2>
+          <ul className={styles.gallery}>
+            {actors.map(actor => {
+              const actorAvatar = actor?.profile_path
+                ? `${imageUrl}${actor.profile_path}`
+                : `https://www.focusedu.org/wp-content/uploads/2018/12/circled-user-male-skin-type-1-2.png`;
+
+              return (
+                <li key={actor.id} className={styles.item}>
+                  <img
+                    className={styles.actorImage}
+                    src={actorAvatar}
+                    alt={actor.name}
+                  />{' '}
+                  <p>{actor.name}</p>
+                  <p>Character: {actor.character}</p>
+                </li>
+              );
+            })}
+          </ul>
+        </>
+      )}
     </>
   );
 }
