@@ -1,0 +1,10 @@
+.image {
+  display: block;
+  width: 200px;
+  height: auto;
+}
+
+.actorImage {
+  composes: image;
+  width: 90px;
+}

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { toast } from 'react-toastify';
 import styles from './Searchbar.module.css';
@@ -34,7 +34,7 @@ const Searchbar = ({ onSubmit }) => {
           value={value}
           autoComplete="off"
           autoFocus
-          placeholder="Search images and photos"
+          placeholder="Search movie"
           onChange={handleChange}
         />
       </form>
