@@ -15,6 +15,8 @@ export default function Cast() {
   const imageUrl = `https://www.themoviedb.org/t/p/w600_and_h900_bestv2`;
 
   useEffect(() => {
+    setStatus(Status.PENDING);
+
     API.fetchActors(movieId)
       .then(data => {
         const cast = data.cast;

@@ -16,6 +16,8 @@ export default function Reviews() {
   const imageUrl = `https://www.themoviedb.org/t/p/w600_and_h900_bestv2`;
 
   useEffect(() => {
+    setStatus(Status.PENDING);
+
     API.fetchReviews(movieId)
       .then(data => {
         const total = data.total_results;

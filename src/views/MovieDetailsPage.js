@@ -31,6 +31,8 @@ export default function MovieDetailsPage() {
   const imageUrl = `https://www.themoviedb.org/t/p/w600_and_h900_bestv2`;
 
   useEffect(() => {
+    setStatus(Status.PENDING);
+
     API.fetchMovieByID(movieId)
       .then(movie => {
         setMovie(movie);

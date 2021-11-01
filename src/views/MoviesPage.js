@@ -21,7 +21,6 @@ export default function MoviesPage() {
 
   useEffect(() => {
     if (queryValue) {
-      console.log('queryValue', queryValue);
       setStatus(Status.PENDING);
 
       API.fetchMovies(queryValue)
