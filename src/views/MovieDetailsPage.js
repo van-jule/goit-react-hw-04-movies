@@ -28,7 +28,6 @@ export default function MovieDetailsPage() {
   const [movie, setMovie] = useState(null);
 
   const { movieId } = useParams();
-  const imageUrl = `https://www.themoviedb.org/t/p/w600_and_h900_bestv2`;
 
   useEffect(() => {
     setStatus(Status.PENDING);
@@ -67,6 +66,17 @@ export default function MovieDetailsPage() {
       history.push(location?.state?.from ?? '/');
     };
 
+    const imageUrlEndPointPart = `https://www.themoviedb.org/t/p/w600_and_h900_bestv2`;
+    let movieImgUrl = movie?.backdrop_path;
+    if (movieImgUrl) {
+      movieImgUrl = movieImgUrl.includes('http')
+        ? movieImgUrl.slice(1)
+        : `${imageUrlEndPointPart}${movie.backdrop_path}`;
+    }
+    const imageUrlCorrect =
+      movieImgUrl ||
+      'https://www.linguahouse.com/linguafiles/md5/c1a891a2958ae7c85915f28d4aaa3da1';
+
     return (
       <>
         <button className={styles.button} type="button" onClick={onGoBack}>
@@ -80,7 +90,7 @@ export default function MovieDetailsPage() {
             <div className={styles.wrap}>
               <img
                 className={styles.image}
-                src={`${imageUrl}${movie.backdrop_path}`}
+                src={imageUrlCorrect}
                 alt={movie.title}
               />
               <div className={styles.content}>
