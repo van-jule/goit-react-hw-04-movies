@@ -36,7 +36,7 @@ export default function Reviews() {
   return (
     <>
       <h2 className={styles.title}>Reviews</h2>
-      {totalReviews > 0 ? (
+      {reviews ? (
         <ul className={styles.list}>
           {reviews.map(review => {
             let url = review?.author_details?.avatar_path;
